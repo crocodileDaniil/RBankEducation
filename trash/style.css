@@ -1,0 +1,33 @@
+@keyframes rotateAndScale {
+	0% {
+		transform: rotate(0deg) scale(1);
+	}
+	50% {
+		transform: rotate(180deg) scale(1.5);
+	}
+	100% {
+		transform: rotate(360deg) scale(1);
+	}
+}
+
+.element {
+	margin: 500px;
+	width: 200px;
+	height: 100px;
+	background-color: blue;
+	animation: rotateAndScale 4s ease-in-out infinite;
+}
+.elem {
+	width: 200px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.elem:first-child {
+	background-color: blueviolet;
+}
+
+.elem:last-child {
+	background-color: rgb(64, 226, 43);
+}
