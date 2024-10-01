@@ -1,4 +1,4 @@
-import ChildComponent from '@/core/component/child.component'
+import {ChildComponent} from '@/core/component/child.component'
 import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 

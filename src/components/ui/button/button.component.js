@@ -19,8 +19,6 @@ export class Button extends ChildComponent {
 
 		$R(this.element).html(this.children).addClick(this.onClick)
 
-		console.log(styles)
-
 		if(this.variant) $R(this.element).addClass(styles[this.variant])
 
 		return this.element

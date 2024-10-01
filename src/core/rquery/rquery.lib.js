@@ -161,6 +161,24 @@ class RQuery {
 	//Form
 
 	/**
+	 * добавление события на кнопку формы
+	 * @param {function} onSumbit - событие которые должно выполняться на форме
+	 * @returns {RQuery} - текущий объект
+	 */
+	submit(onSubmit) {
+		if (this.element.tagName.toLocaleLowerCase() === 'form') {
+			this.element.addEventListener('submit', e => {
+				e.preventDefault()
+				onSubmit(e)
+			})
+		} else {
+			throw new Error('Element must be a form')
+		}
+
+		return this
+	}
+
+	/**
 	 * добавление отрибутов и события (при наличии) элементу ввода
 	 * @param {function} param1 onInput event to hanlde input
 	 * @param {Object} param2 ...rest, атрибуты для добавления
