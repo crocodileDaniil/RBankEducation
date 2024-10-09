@@ -9,17 +9,19 @@ import styles from './auth.module.scss'
 import template from './auth.template.html'
 import formService from '@/core/services/form.service'
 import validationService from '@/core/services/validation.service'
+import { AuthService } from '@/api/auth.service'
 
 export class Auth extends BaseScreen {
 	#isTypeLogin = true
 	constructor() {
 		super({ title: 'Auth' })
+		this.authService = new AuthService()
 	}
 
 	#validateFields(formValues) {
 		const emailLabel = $R(this.element).find('label:first-child')
 		const passwordLabel = $R(this.element).find('label:last-child')
-		console.log(formValues)
+		// console.log(formValues)
 		if(!formValues.email) {
 			validationService.showError(emailLabel)
 		}
@@ -35,8 +37,11 @@ export class Auth extends BaseScreen {
 	#handleSubmit = event => {
 		const formValues = formService.getFormValues(event.target)
 		if(!this.#validateFields(formValues)) return 
-		console.log(formValues)
-		return formValues
+
+		// console.log(formValues)
+		const type = this.#isTypeLogin ? 'login' : 'register'
+		this.authService.main(type,formValues)
+		
 	}
 
 	#changeFromType = event => {
@@ -50,6 +55,7 @@ export class Auth extends BaseScreen {
 	}
 
 	render() {
+
 		this.element = renderService.htmlToElement(
 			template,
 			[

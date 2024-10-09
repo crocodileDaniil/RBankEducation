@@ -21,7 +21,10 @@ export class Router {
       this.#handleRouteChange()
     })
 	}
-  
+  /**
+   * позволяет получить текущий путь
+   * @returns {string} - текущий путь
+    */
 	getCurrentPath() {
 		return window.location.pathname // url в браузере
 	}

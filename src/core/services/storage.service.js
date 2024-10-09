@@ -1,4 +1,3 @@
-
 export class StorageService {
   /**
    * сохраняет данные в локалСторадж

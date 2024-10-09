@@ -29,7 +29,7 @@ export class Store {
    * @returns {Store} - возвращает сторе
    */
   static getInstance() {
-    if(Store.instance) {
+    if(!Store.instance) {
       Store.instance = new Store({user:null})
     } 
     return Store.instance
@@ -47,13 +47,13 @@ export class Store {
   * @param {Object} observer - слушатель необходимый для удалени
   */
   removerObserver(observer) {
-    this.observers = this.observers.filter(obs => ibs !== observer)
+    this.observers = this.observers.filter(obs => obs !== observer)
   }
 /**
  * ререндер слшуателей (вызывается при изменении данных)
  */
   notify() {
-    for (observer of this.observers) {
+    for (let observer of this.observers) {
       observer.update()
     }
   }

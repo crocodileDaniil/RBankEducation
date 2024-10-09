@@ -1,7 +1,6 @@
 import { redQuery } from '@/core/red-query/red-query.lig'
 
-
-export class AuthService {
+export class StatisticService {
 	#BASE_URL = '/statistics'
 
 	main(onSuccess) {

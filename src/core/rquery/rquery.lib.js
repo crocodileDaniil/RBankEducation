@@ -32,6 +32,23 @@ class RQuery {
 	}
 	//CSS
 
+ /**
+	* Удаляет свойство дисплей у HTML элемента (чтобы убрать значение none)
+	* @returns {RQuery} - возвращает текущий объект RQuery
+	*/
+	show() {
+		this.element.style.removeProperty('display')
+		return this
+	}
+ /**
+	* ставит элементу значение display none, чтобы элемент пропал.
+	* @returns {RQuery} - текуший объект RQuery
+	*/
+	hide() {
+		this.element.style.display = 'none'
+		return this
+	}
+
 	/**
 	 *  add or replace value CSS style
 	 * @param {String} property key CSS style
