@@ -16,6 +16,15 @@ export class Header extends ChildComponent {
 	constructor({ router }) {
 		super()
 		this.store = Store.getInstance()
+		this.userItem = new UserItem(
+			{
+				name: 'Name',
+				avatarPath:
+					'https://www.dobrovserdce.ru/images/2022/11/02/kot%20Fedya_large.jpeg'
+			},
+			true,
+			() => console.log('Hey user')
+		)
 
 		this.store.addObserver(this)
 
@@ -26,22 +35,16 @@ export class Header extends ChildComponent {
 		this.user = this.store.state.user
 
 		const authSideElement = $R(this.element).find('#auth-side')
-		const userName = this.user.name.split('.').join(' ')
+		const userName = this.user ? this.user.name.split('.').join(' ') : null
 		// console.log(userName)
 		// console.log(this.user)
 
 		if (this.user) {
 			authSideElement.show()
-			authSideElement
-				.find('button')
-				.find('img')
-				.attr('src', this.user.avatarPath)
-			authSideElement
-				.find('button')
-				.find('img')
-				.attr('alt', userName.slice(0, 3))
-			authSideElement.find('button').find('span').text(userName)
-			console.log(authSideElement.find('button').find('img'))
+			this.userItem.update({
+				...this.user,
+				name: userName
+			})
 		} else {
 			authSideElement.hide()
 		}
@@ -54,20 +57,7 @@ export class Header extends ChildComponent {
 	render() {
 		this.element = renderService.htmlToElement(
 			template,
-			[
-				Logo,
-				new LogoutButton({ router: this.router }),
-				Search,
-				new UserItem(
-					{
-						name: 'Dan',
-						avatarPath:
-							'https://www.dobrovserdce.ru/images/2022/11/02/kot%20Fedya_large.jpeg'
-					},
-					true,
-					() => console.log('Hey Daniil')
-				)
-			],
+			[Logo, new LogoutButton({ router: this.router }), Search, this.userItem],
 			styles
 		)
 		this.update()

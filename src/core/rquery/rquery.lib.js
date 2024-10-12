@@ -32,18 +32,18 @@ class RQuery {
 	}
 	//CSS
 
- /**
-	* Удаляет свойство дисплей у HTML элемента (чтобы убрать значение none)
-	* @returns {RQuery} - возвращает текущий объект RQuery
-	*/
+	/**
+	 * Удаляет свойство дисплей у HTML элемента (чтобы убрать значение none)
+	 * @returns {RQuery} - возвращает текущий объект RQuery
+	 */
 	show() {
 		this.element.style.removeProperty('display')
 		return this
 	}
- /**
-	* ставит элементу значение display none, чтобы элемент пропал.
-	* @returns {RQuery} - текуший объект RQuery
-	*/
+	/**
+	 * ставит элементу значение display none, чтобы элемент пропал.
+	 * @returns {RQuery} - текуший объект RQuery
+	 */
 	hide() {
 		this.element.style.display = 'none'
 		return this
@@ -152,6 +152,34 @@ class RQuery {
 	}
 
 	/**
+	 * add text content this HTMLElement
+	 * @param {string} textContent
+	 * @returns {RQuery}
+	*/
+	text(textContent) {
+		if (typeof textContent === 'undefined') return this.element.textContent
+		else {
+			this.element.textContent = textContent
+			return this
+		}
+	}
+	// EVENTS
+/**
+ * Добавляет слушатель/событие
+ * @param {string} eventType - тип события
+ * @param {function} callback - слушатель или событие происходящее при действии eventType 
+ * @returns {RQuery} - текущий элмент
+ */
+	on(eventType,callback) {
+		if (typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error('eventType not string or callback not a function')
+		}
+
+		this.element.addEventListener(eventType, callback)
+		return this
+	}
+	
+	/**
 	 * добавляет событие на элемент
 	 * @param {function()} callback функция - событие
 	 * @returns {RQuery} RQuerry объект
@@ -161,20 +189,6 @@ class RQuery {
 		this.element.addEventListener('click', callback)
 		return this
 	}
-
-	/**
-	 * add text content this HTMLElement
-	 * @param {string} textContent
-	 * @returns {RQuery}
-	 */
-	text(textContent) {
-		if (typeof textContent === 'undefined') return this.element.textContent
-		else {
-			this.element.textContent = textContent
-			return this
-		}
-	}
-
 	//Form
 
 	/**
@@ -238,10 +252,11 @@ class RQuery {
 	}
 
 	/**
-	 * вешает события, которое запрещает ввод букв и добавляет ограничение 16 символов по умолчанию
+	 * добавляет событие, которое запрещает ввод букв и добавляет ограничение 16 символов по умолчанию
 	 * @returns {RQuery}
 	 */
 	creditCardInput() {
+		const limit = 16
 		if (
 			this.element.tagName.toLowerCase() !== 'input' ||
 			this.element.type !== 'text'

@@ -24,7 +24,7 @@ export class UserItem extends ChildComponent {
 
 	update({avatarPath, name}) {
 		if(avatarPath && name) {
-			$R(this.element).find('img').attr('src',avatarPath).attr('alt', name)
+			$R(this.element).find('img').attr('src',avatarPath).attr('alt', name.slice(0,3))
 			$R(this.element).find('span').text(name)
 		}
 	}
