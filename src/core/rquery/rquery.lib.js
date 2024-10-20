@@ -30,6 +30,15 @@ class RQuery {
 
 		throw new Error(`Element ${selector} not found`)
 	}
+/**
+ * ищет все элементы в определённым селектором/классом/свойством
+ * @param {string} selector - название селектора/класса/свойства 
+ * @returns {RQuery[]} массив RQurry объектор из этих селекторов/классов
+ */
+	findAll(selector) {
+		const elements  = this.element.querySelectorAll(selector)
+		return Array.from(elements).map(element => new RQuery(element))
+	}
 	//CSS
 
 	/**
@@ -174,7 +183,6 @@ class RQuery {
 		if (typeof eventType !== 'string' || typeof callback !== 'function') {
 			throw new Error('eventType not string or callback not a function')
 		}
-
 		this.element.addEventListener(eventType, callback)
 		return this
 	}

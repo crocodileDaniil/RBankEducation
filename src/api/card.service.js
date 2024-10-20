@@ -31,7 +31,7 @@ export class CardService {
 			method: 'PATCH',
 			body: { amount: +amount },
 			onSuccess: () => {
-				this.notificationService.show('success', 'Balance successfuly changed'),
+				this.notificationService.show('success', 'Balance successfully changed'),
 					onSuccess()
 			}
 		})

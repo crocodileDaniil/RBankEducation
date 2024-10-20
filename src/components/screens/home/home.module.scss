@@ -1,8 +1,12 @@
+@import 'src/styles/_variables.scss';
+
 .home {
-  background-color: lightgreen;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: $gap;
 }
 
 .text:hover {
-  background-color: lightcoral;
+  
   
 }

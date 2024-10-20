@@ -30,7 +30,7 @@ export class Search extends ChildComponent {
 
 			users.forEach((user, index) => {
 				const userItem = new UserItem(user, true, () => {
-					console.log('search.component')
+					console.log(user)
 					searchResultElement.html('')
 				}).render()
 
@@ -56,7 +56,7 @@ export class Search extends ChildComponent {
 		$R(this.element).find('input').input({
 			type: 'search',
 			name: 'search',
-			placeholde: 'Search contact'
+			placeholder: 'Search contact'
 		}).on('input', debounceHandleSearch)
 		return this.element
 	}

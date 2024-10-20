@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button/button.component'
 import styles from './home.module.scss'
 import homeTemplate from './home.template.html'
 import { Heading } from '@/components/ui/heading/heading.component'
+import { CardInfo } from '@/components/screens/home/card-info/card-info.component'
 
 export class Home extends BaseScreen {
 	constructor() {
@@ -14,7 +15,8 @@ export class Home extends BaseScreen {
 
 	render() {
 		let element = renderService.htmlToElement(homeTemplate, [
-			new Heading('Heading home')
+			new Heading('Heading home'),
+			new CardInfo()
 		], styles)
 		return element
 	}
