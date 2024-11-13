@@ -30,13 +30,13 @@ class RQuery {
 
 		throw new Error(`Element ${selector} not found`)
 	}
-/**
- * ищет все элементы в определённым селектором/классом/свойством
- * @param {string} selector - название селектора/класса/свойства 
- * @returns {RQuery[]} массив RQurry объектор из этих селекторов/классов
- */
+	/**
+	 * ищет все элементы в определённым селектором/классом/свойством
+	 * @param {string} selector - название селектора/класса/свойства
+	 * @returns {RQuery[]} массив RQurry объектор из этих селекторов/классов
+	 */
 	findAll(selector) {
-		const elements  = this.element.querySelectorAll(selector)
+		const elements = this.element.querySelectorAll(selector)
 		return Array.from(elements).map(element => new RQuery(element))
 	}
 	//CSS
@@ -164,7 +164,7 @@ class RQuery {
 	 * add text content this HTMLElement
 	 * @param {string} textContent
 	 * @returns {RQuery}
-	*/
+	 */
 	text(textContent) {
 		if (typeof textContent === 'undefined') return this.element.textContent
 		else {
@@ -173,20 +173,20 @@ class RQuery {
 		}
 	}
 	// EVENTS
-/**
- * Добавляет слушатель/событие
- * @param {string} eventType - тип события
- * @param {function} callback - слушатель или событие происходящее при действии eventType 
- * @returns {RQuery} - текущий элмент
- */
-	on(eventType,callback) {
+	/**
+	 * Добавляет слушатель/событие
+	 * @param {string} eventType - тип события
+	 * @param {function} callback - слушатель или событие происходящее при действии eventType
+	 * @returns {RQuery} - текущий элмент
+	 */
+	on(eventType, callback) {
 		if (typeof eventType !== 'string' || typeof callback !== 'function') {
 			throw new Error('eventType not string or callback not a function')
 		}
 		this.element.addEventListener(eventType, callback)
 		return this
 	}
-	
+
 	/**
 	 * добавляет событие на элемент
 	 * @param {function()} callback функция - событие
@@ -281,6 +281,22 @@ class RQuery {
 
 		return this
 	}
+
+	/**
+	 *
+	 * @param {String} [newValue] - новое значение формы (необязательно)
+	 * @returns {String | RQuery} - если не было передано значение, вернёт текущее значение формы,
+	 * если значение было передано, то вернёт RQuerry
+	 */
+	value(newValue) {
+		if (!newValue) {
+			return this.element.value
+		}
+		this.element.value = newValue
+		return this
+	}
+	//Attr
+
 	/**
 	 * Изменяет значение атрибута элемента или дбавляет атрибут с конкретым значение.
 	 * Если значение атрибута не передано, то возвращает значение атрибута
@@ -298,6 +314,19 @@ class RQuery {
 		}
 
 		this.element.setAttribute(attributeName, value)
+		return this
+	}
+	/**
+	 *
+	 * @param {String} attributeName - имя атрибута
+	 * @returns {RQuery} - без необходимого атрибута
+	 */
+	removeAttr(attributeName) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute name must be a string')
+		}
+		this.element.removeAttribute(attributeName)
+
 		return this
 	}
 }

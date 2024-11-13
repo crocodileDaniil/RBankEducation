@@ -26,8 +26,9 @@ export class CardService {
 	 * @returns ответ от сервера
 	 */
 	updateBalance(amount, type, onSuccess) {
+		console.log(type)
 		return redQuery({
-			parh: `${this.#BASE_URL}/balance/${type}`,
+			path: `${this.#BASE_URL}/balance/${type}`,
 			method: 'PATCH',
 			body: { amount: +amount },
 			onSuccess: () => {
