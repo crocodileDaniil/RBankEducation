@@ -223,14 +223,14 @@ class RQuery {
 	 * @param {Object} param2 ...rest, атрибуты для добавления
 	 * @returns {RQuery} RQuery сам объект
 	 */
-	input({ onInput, ...rest }) {
+	input({ onInput, value, ...rest }) {
 		if (this.element.tagName.toLowerCase() !== 'input')
 			throw new Error('Element must be an input')
 
 		for (const [key, value] of Object.entries(rest)) {
 			this.element.setAttribute(key, value)
 		}
-
+		if (!value) this.element.setAttribute('value', '')
 		if (this.input) this.element.addEventListener('click', onInput)
 
 		return this
@@ -273,7 +273,7 @@ class RQuery {
 		}
 
 		this.element.addEventListener('input', e => {
-			let value = e.target.value.replace(/[^0-9]/g, '0')
+			let value = e.target.value.replace(/[^0-9]/g, '')
 			if (limit) value = value.substring(0, limit)
 
 			e.target.value = formatCardNumberWithDashes(value)

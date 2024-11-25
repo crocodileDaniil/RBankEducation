@@ -25,7 +25,7 @@ export class CardInfo extends ChildComponent {
 		this.cardService = new CardService()
 
 		this.element = renderService.htmlToElement(template, [], styles)
-		this.#addListener()
+		this.#addListeners()
 	}
 
 	// #fillWithData = data => {
@@ -39,11 +39,11 @@ export class CardInfo extends ChildComponent {
 	// 	console.log($R(this.element))
 	// }
 
-	#addListener() {
+	#addListeners() {
 		document.addEventListener(BALANCE_UPDATED, this.#onBalanceUpdated)
 	}
 
-	#removeListener() {
+	#removeListeners() {
 		document.removeEventListener(BALANCE_UPDATED, this.#onBalanceUpdated)
 	}
 	
@@ -52,7 +52,7 @@ export class CardInfo extends ChildComponent {
 	}
 
 	destroy() {
-		this.#removeListener()
+		this.#removeListeners()
 	}
 
 	#copyCardNumber(e) {

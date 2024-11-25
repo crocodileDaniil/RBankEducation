@@ -1,4 +1,4 @@
-import ChildComponent from '@/core/component/child.component'
+import {ChildComponent} from '@/core/component/child.component'
 import renderService from '@/core/services/render.service'
 
 import styles from './<FTName>.module.scss'

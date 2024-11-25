@@ -1,9 +1,9 @@
-import ChildComponent from '@/core/component/child.component';
+import {ChildComponent} from '@/core/component/child.component';
 import { $R } from '@/core/rquery/rquery.lib';
 import renderService from '@/core/services/render.service';
 
 
-
+import styles from './loader.module.scss'
 import template from './loader.template.html';
 
 
@@ -19,10 +19,14 @@ export class Loader extends ChildComponent {
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 
-		 $R(this.element)
-				.css('width', this.width + 'px')
-				.css('heaght', this.height + 'px')
-				.addClass('bounce')
+		//  $R(this.element)
+		// 		.css('width', this.width + 'px')
+		// 		.css('heaght', this.height + 'px')
+		// 		.addClass('bounce')
+		
+		this.element.style = `width: ${this.width}px; height: ${this.height}px`
+		this.element.classList.add('bounce')
+
 		return this.element
 	}
 }

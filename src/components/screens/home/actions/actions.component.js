@@ -83,7 +83,8 @@ export class Actions extends ChildComponent {
 					onClick: e => this.updateBalance(e, 'withdrawal')
 				}).render()
 			)
-
+		// тест события, чтобы например форматировать введенные данные
+		// $R(this.element).find('input').element.addEventListener('input', (e) => console.log(e.data))
 		return this.element
 	}
 }

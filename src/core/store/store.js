@@ -26,7 +26,7 @@ export class Store {
 	}
   /**
    * Для получения стора с актуальным состоянием
-   * @returns {Store} - возвращает сторе
+   * @returns {Store} - возвращает стор
    */
   static getInstance() {
     if(!Store.instance) {
