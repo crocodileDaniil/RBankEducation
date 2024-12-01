@@ -74,7 +74,7 @@ export class Router {
         children: component.render()
       }).render()
 
-      $R('#app').append(this.#layout)
+      $R('#app').html('').append(this.#layout)
     }
     $R('#content').replacContent(component.render())
 		// document.querySelector('#app').querySelector('main').innerHTML = component.render() // для not found лучше переделать
